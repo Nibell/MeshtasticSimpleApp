@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/nibell/.gradle/daemon/8.10/com.example.meshtasticapp-merged_res-20:/layout_activity_main.xml.flat",
+        "source": "/Users/nibell/.gradle/daemon/8.10/com.example.meshtasticapp-main-22:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.meshtasticapp-merged_res-20:/layout_activity_main.xml.flat",
+        "source": "com.example.meshtasticapp-main-22:/layout/activity_main.xml"
+    }
+]

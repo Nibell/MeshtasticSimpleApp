@@ -1,0 +1,140 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.meshtasticapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission
+11-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:3:5-68
+12        android:name="android.permission.BLUETOOTH"
+12-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:3:22-65
+13        android:maxSdkVersion="30" />
+13-->[no.nordicsemi.android:ble:2.7.2] /Users/nibell/.gradle/caches/8.10/transforms/2ed9eb4fbf611997f89bdea32f018856/transformed/ble-2.7.2/AndroidManifest.xml:9:9-35
+14    <uses-permission
+14-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:4:5-74
+15        android:name="android.permission.BLUETOOTH_ADMIN"
+15-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:4:22-71
+16        android:maxSdkVersion="30" />
+16-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:19:9-35
+17    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+17-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:5:5-76
+17-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:5:22-73
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+18-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:6:5-79
+18-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:6:22-76
+19    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+19-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:7:5-73
+19-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:7:22-70
+20    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+20-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:5:5-76
+20-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:5:22-73
+21    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+21-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:6:5-79
+21-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:6:22-76
+22    <uses-permission android:name="android.permission.BLUETOOTH" />
+22-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:3:5-68
+22-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:3:22-65
+23    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+23-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:4:5-74
+23-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:4:22-71
+24
+25    <permission
+25-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+26        android:name="com.example.meshtasticapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+27        android:protectionLevel="signature" />
+27-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+28
+29    <uses-permission android:name="com.example.meshtasticapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+30
+31    <application
+31-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:12:5-24:19
+32        android:allowBackup="true"
+32-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:13:9-35
+33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+33-->[androidx.core:core:1.10.1] /Users/nibell/.gradle/caches/8.10/transforms/985ae948fbea2542aa6c858ec4cbbae0/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+34        android:debuggable="true"
+35        android:extractNativeLibs="false"
+36        android:label="Meshtastic App"
+36-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:14:9-39
+37        android:testOnly="true"
+38        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+38-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:15:9-65
+39        <activity
+39-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:16:9-23:20
+40            android:name="com.example.meshtasticapp.MainActivity"
+40-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:17:13-41
+41            android:exported="true" >
+41-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:18:13-36
+42            <intent-filter>
+42-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:19:13-22:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:20:17-69
+43-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:20:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:21:17-77
+45-->/Users/nibell/Desktop/Workspace/Git/github/MeshtasticSimpleApp/app/src/main/AndroidManifest.xml:21:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <provider
+49-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+50            android:name="androidx.startup.InitializationProvider"
+50-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+51            android:authorities="com.example.meshtasticapp.androidx-startup"
+51-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+52            android:exported="false" >
+52-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+53            <meta-data
+53-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+54                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+54-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+55                android:value="androidx.startup" />
+55-->[androidx.emoji2:emoji2:1.2.0] /Users/nibell/.gradle/caches/8.10/transforms/ef1bd5de94009cbde539d7d5d957cd30/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+56            <meta-data
+56-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/nibell/.gradle/caches/8.10/transforms/b865494b259724b96fd0320a3cb37f53/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+57                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/nibell/.gradle/caches/8.10/transforms/b865494b259724b96fd0320a3cb37f53/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+58                android:value="androidx.startup" />
+58-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/nibell/.gradle/caches/8.10/transforms/b865494b259724b96fd0320a3cb37f53/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+59        </provider>
+60        <!--
+61		Service used to scan in background to emulate scanning with
+62		PendingIntent on Android 4.3 - 7.x. Service will scan in background with given
+63		settings and filters.
+64        -->
+65        <service
+65-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:41:9-43:40
+66            android:name="no.nordicsemi.android.support.v18.scanner.ScannerService"
+66-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:42:13-84
+67            android:exported="false" />
+67-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:43:13-37
+68        <!--
+69		The receiver used to scan with PendingIntent on Android 8+.
+70		It will translate results from android.bluetooth.le package to
+71		no.nordicsemi.android.support.v18, apply filters or perform batching,
+72		depending on the settings.
+73        -->
+74        <receiver
+74-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:51:9-58:20
+75            android:name="no.nordicsemi.android.support.v18.scanner.PendingIntentReceiver"
+75-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:52:13-91
+76            android:exported="true" >
+76-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:53:13-36
+77            <intent-filter>
+77-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:55:13-57:29
+78                <action android:name="no.nordicsemi.android.support.v18.ACTION_FOUND" />
+78-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:56:17-89
+78-->[no.nordicsemi.android.support.v18:scanner:1.6.0] /Users/nibell/.gradle/caches/8.10/transforms/0a5f84296ea6de34a076f0928d827f2f/transformed/scanner-1.6.0/AndroidManifest.xml:56:25-86
+79            </intent-filter>
+80        </receiver>
+81    </application>
+82
+83</manifest>
