@@ -5,25 +5,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp">
+
     <Button
         android:id="@+id/connectButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Connect to Meshtastic" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: Not connected"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp" />
+
     <EditText
         android:id="@+id/messageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Type your message here" />
+
     <Button
         android:id="@+id/sendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send Message" />
+
     <TextView
         android:id="@+id/receiveTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Received Messages:"
         android:paddingTop="20dp" />
+
 </LinearLayout>

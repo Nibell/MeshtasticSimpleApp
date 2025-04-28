@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_outer_classname = "MeshtasticappProtobufs";
+option java_package = "com.example.meshtasticapp.protobufs";
+
+// Define the MeshData message that contains a text string
+message MeshData {
+    string text = 1; // This field will store the text message
+}
+
+// Define the MeshPacket message that includes the MeshData
+message MeshPacket {
+    optional uint32 from = 1;  // Optional field for command ID
+    uint32 to = 2;    // Recipient ID
+    uint32 channel = 3; // Channel for the message
+    bytes payload = 4;  // Payload, which will be a MeshData message
+}

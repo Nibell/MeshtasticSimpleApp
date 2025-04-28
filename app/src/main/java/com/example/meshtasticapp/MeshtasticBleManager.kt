@@ -2,20 +2,28 @@ package com.example.meshtasticapp
 
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
+import android.content.Context
 import no.nordicsemi.android.ble.BleManager
 import no.nordicsemi.android.ble.data.Data
+import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket
+import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshData
 import java.util.*
+import build.buf.gen.meshtastic.toRadio
 
-class MeshtasticBleManager(context: android.content.Context) : BleManager(context) {
+class MeshtasticBleManager(context: Context) : BleManager(context) {
 
     private var txCharacteristic: BluetoothGattCharacteristic? = null
     private var rxCharacteristic: BluetoothGattCharacteristic? = null
+
+    var onDataReceived: ((Data) -> Unit)? = null
+    var onStatusUpdate: ((String) -> Unit)? = null
+
+    var myNodeId: Int? = null
 
     companion object {
         val SERVICE_UUID: UUID = UUID.fromString("6ba1b218-15a8-461f-9fa8-5dcae273eafd")
         val FROM_RADIO_UUID: UUID = UUID.fromString("2c55e69e-4993-11ed-b878-0242ac120002")
         val TO_RADIO_UUID: UUID = UUID.fromString("f75c76d2-129e-4dad-a1dd-7866124401e7")
-        val NOTIFY_UUID: UUID = UUID.fromString("ed9da18c-a800-4f66-a670-aa7547e34453")
     }
 
     override fun isRequiredServiceSupported(gatt: BluetoothGatt): Boolean {
@@ -29,12 +37,26 @@ class MeshtasticBleManager(context: android.content.Context) : BleManager(contex
 
     override fun initialize() {
         setNotificationCallback(rxCharacteristic).with { _, data ->
-            onDataReceived?.invoke(data)
+            data.value?.let { bytes ->
+                try {
+                    val meshPacket = MeshPacket.parseFrom(bytes)
+                    handleIncomingPacket(meshPacket)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
         enableNotifications(rxCharacteristic).enqueue()
 
-        // Send WantConfig packet automatically after ready
-        requestWantConfig()
+        requestWantNodeInfo()
+    }
+
+    private fun handleIncomingPacket(packet: MeshPacket) {
+        if (packet.hasFrom()) {
+            myNodeId = packet.from
+            onStatusUpdate?.invoke("Connected to Node ID: ${myNodeId}")
+        }
+        onDataReceived?.invoke(Data(packet.toByteArray()))
     }
 
     override fun onServicesInvalidated() {
@@ -42,24 +64,40 @@ class MeshtasticBleManager(context: android.content.Context) : BleManager(contex
         rxCharacteristic = null
     }
 
-    var onDataReceived: ((Data) -> Unit)? = null
-
     fun sendMessage(message: String) {
-        txCharacteristic?.let {
-            writeCharacteristic(it, message.toByteArray()).enqueue()
+        val packet = buildTextPacket(message)
+        sendRaw(packet)
+    }
+
+    private fun buildTextPacket(text: String): ByteArray {
+        val dataPayload = MeshData.newBuilder()
+            .setText(text)
+            .build()
+
+        val fromId = myNodeId ?: 2053895156 // fallback if not yet detected
+
+        val meshPacket = MeshPacket.newBuilder()
+            .setFrom(fromId)
+            .setTo(0xFFFFFFFF.toInt()) // broadcast
+            .setChannel(0)
+            .setPayload(dataPayload.toByteString())
+            .build()
+
+        return meshPacket.toByteArray()
+    }
+
+    private fun requestWantNodeInfo() {
+        // Send special packet requesting Node Info
+        val tr = toRadio {
+            wantConfigId = 1
         }
+        val payload = tr.toByteArray()
+        sendRaw(payload)
     }
 
     fun sendRaw(bytes: ByteArray) {
         txCharacteristic?.let {
             writeCharacteristic(it, bytes).enqueue()
         }
-    }
-
-    private fun requestWantConfig() {
-        val wantConfigId = 0x04 // 4 = WantConfigId in Meshtastic protocol
-        val payload = byteArrayOf(wantConfigId.toByte())
-
-        sendRaw(payload)
     }
 }

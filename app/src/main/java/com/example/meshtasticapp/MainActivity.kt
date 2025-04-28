@@ -16,10 +16,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bleManager: MeshtasticBleManager
     private var connectedDevice: BluetoothDevice? = null
-    private lateinit var sendButton: Button
-    private lateinit var receiveTextView: TextView
-    private lateinit var messageEditText: EditText
+
     private lateinit var connectButton: Button
+    private lateinit var sendButton: Button
+    private lateinit var messageEditText: EditText
+    private lateinit var receiveTextView: TextView
+    private lateinit var statusTextView: TextView
 
     private val scanner by lazy {
         BluetoothLeScannerCompat.getScanner()
@@ -42,10 +44,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sendButton = findViewById(R.id.sendButton)
-        receiveTextView = findViewById(R.id.receiveTextView)
-        messageEditText = findViewById(R.id.messageEditText)
         connectButton = findViewById(R.id.connectButton)
+        sendButton = findViewById(R.id.sendButton)
+        messageEditText = findViewById(R.id.messageEditText)
+        receiveTextView = findViewById(R.id.receiveTextView)
+        statusTextView = findViewById(R.id.statusTextView)
 
         bleManager = MeshtasticBleManager(this)
 
@@ -57,6 +60,12 @@ class MainActivity : AppCompatActivity() {
                 bleManager.sendMessage(message)
             } else {
                 Toast.makeText(this, "Not connected!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        bleManager.onStatusUpdate = { status ->
+            runOnUiThread {
+                statusTextView.text = status
             }
         }
 
@@ -92,11 +101,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun connectToDevice(device: BluetoothDevice) {
-        if (device == null) {
-            Toast.makeText(this, "Device is null", Toast.LENGTH_SHORT).show()
-            return
-        }
-
         connectedDevice = device
 
         bleManager.connect(device)
@@ -107,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Connected!", Toast.LENGTH_SHORT).show()
                 }
             }
-            .fail { dev, status ->
+            .fail { _, status ->
                 runOnUiThread {
                     Toast.makeText(this, "Failed: $status", Toast.LENGTH_SHORT).show()
                 }
@@ -133,11 +137,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
             startScan()
