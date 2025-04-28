@@ -1,19 +1,25 @@
 package com.example.meshtasticapp
 
+import android.Manifest
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
 import android.content.Context
+import android.util.Log
+import androidx.annotation.RequiresPermission
+import build.buf.gen.meshtastic.toRadio
+import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded
+import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshData
+import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import no.nordicsemi.android.ble.BleManager
 import no.nordicsemi.android.ble.data.Data
-import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket
-import com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshData
 import java.util.*
-import build.buf.gen.meshtastic.toRadio
+
 
 class MeshtasticBleManager(context: Context) : BleManager(context) {
 
-    private var txCharacteristic: BluetoothGattCharacteristic? = null
-    private var rxCharacteristic: BluetoothGattCharacteristic? = null
+    private val bleCharacteristics = mutableMapOf<String, BluetoothGattCharacteristic?>()
 
     var onDataReceived: ((Data) -> Unit)? = null
     var onStatusUpdate: ((String) -> Unit)? = null
@@ -29,13 +35,14 @@ class MeshtasticBleManager(context: Context) : BleManager(context) {
     override fun isRequiredServiceSupported(gatt: BluetoothGatt): Boolean {
         val service = gatt.getService(SERVICE_UUID)
         if (service != null) {
-            txCharacteristic = service.getCharacteristic(TO_RADIO_UUID)
-            rxCharacteristic = service.getCharacteristic(FROM_RADIO_UUID)
+            bleCharacteristics[TO_RADIO_UUID.toString()] = service.getCharacteristic(TO_RADIO_UUID)
+            bleCharacteristics[FROM_RADIO_UUID.toString()] = service.getCharacteristic(FROM_RADIO_UUID)
         }
-        return txCharacteristic != null && rxCharacteristic != null
+        return bleCharacteristics[TO_RADIO_UUID.toString()] != null && bleCharacteristics[FROM_RADIO_UUID.toString()] != null
     }
 
     override fun initialize() {
+        val rxCharacteristic = bleCharacteristics[FROM_RADIO_UUID.toString()]
         setNotificationCallback(rxCharacteristic).with { _, data ->
             data.value?.let { bytes ->
                 try {
@@ -52,7 +59,7 @@ class MeshtasticBleManager(context: Context) : BleManager(context) {
     }
 
     private fun handleIncomingPacket(packet: MeshPacket) {
-        if (packet.hasFrom()) {
+        if (packet.from != 0) {
             myNodeId = packet.from
             onStatusUpdate?.invoke("Connected to Node ID: ${myNodeId}")
         }
@@ -60,11 +67,11 @@ class MeshtasticBleManager(context: Context) : BleManager(context) {
     }
 
     override fun onServicesInvalidated() {
-        txCharacteristic = null
-        rxCharacteristic = null
+        bleCharacteristics.clear()
     }
 
-    fun sendMessage(message: String) {
+    // Send normal text message
+    fun sendTextMessage(message: String) {
         val packet = buildTextPacket(message)
         sendRaw(packet)
     }
@@ -74,13 +81,19 @@ class MeshtasticBleManager(context: Context) : BleManager(context) {
             .setText(text)
             .build()
 
-        val fromId = myNodeId ?: 2053895156 // fallback if not yet detected
+        val decoded = Decoded.newBuilder()
+            .setPortnum(Decoded.PortNum.TEXT_MESSAGE_APP)  // Set portnum for TEXT message
+            .setPayload(dataPayload.toByteString())
+            .build()
+
+        val fromId = myNodeId ?: 1 // fallback to 1 if myNodeId is null
 
         val meshPacket = MeshPacket.newBuilder()
             .setFrom(fromId)
-            .setTo(0xFFFFFFFF.toInt()) // broadcast
+            .setTo(0xFFFFFFFF.toInt()) // broadcast to all nodes
             .setChannel(0)
-            .setPayload(dataPayload.toByteString())
+            .setWantAck(true)
+            .setDecoded(decoded)
             .build()
 
         return meshPacket.toByteArray()
@@ -96,7 +109,7 @@ class MeshtasticBleManager(context: Context) : BleManager(context) {
     }
 
     fun sendRaw(bytes: ByteArray) {
-        txCharacteristic?.let {
+        bleCharacteristics[TO_RADIO_UUID.toString()]?.let {
             writeCharacteristic(it, bytes).enqueue()
         }
     }

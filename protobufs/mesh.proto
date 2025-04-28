@@ -3,15 +3,36 @@ syntax = "proto3";
 option java_outer_classname = "MeshtasticappProtobufs";
 option java_package = "com.example.meshtasticapp.protobufs";
 
-// Define the MeshData message that contains a text string
+// This message contains user text or other app-specific payload
 message MeshData {
-    string text = 1; // This field will store the text message
+    string text = 1;  // Text message
+    bytes binary = 2; // Optional: Raw binary payload
 }
 
-// Define the MeshPacket message that includes the MeshData
+// This defines the "decoded" field inside MeshPacket
+message Decoded {
+    enum PortNum {
+        UNKNOWN_APP = 0;
+        TEXT_MESSAGE_APP = 1;  // Port number for text messages
+        POSITION_APP = 2;
+        TELEMETRY_APP = 3;
+        NODEINFO_APP = 5;
+        ROUTING_APP = 7;
+        // Additional apps can be added
+    }
+
+    PortNum portnum = 1;
+    bytes payload = 2; // Payload will be MeshData serialized as bytes
+}
+
+// The main packet sent over BLE / Radio
 message MeshPacket {
-    optional uint32 from = 1;  // Optional field for command ID
-    uint32 to = 2;    // Recipient ID
-    uint32 channel = 3; // Channel for the message
-    bytes payload = 4;  // Payload, which will be a MeshData message
+    uint32 from = 1;
+    uint32 to = 2;
+    uint32 channel = 3;
+    bool want_ack = 4;
+
+    // Either payload (raw) or decoded (preferred)
+    bytes payload = 5;
+    Decoded decoded = 6;
 }

@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
             val message = messageEditText.text.toString()
             if (connectedDevice != null) {
-                bleManager.sendMessage(message)
+                bleManager.sendTextMessage(message)
             } else {
                 Toast.makeText(this, "Not connected!", Toast.LENGTH_SHORT).show()
             }
@@ -71,7 +71,8 @@ class MainActivity : AppCompatActivity() {
 
         bleManager.onDataReceived = { data ->
             runOnUiThread {
-                receiveTextView.append("\nReceived: ${data.getStringValue(0)}")
+                val rawText = data.getStringValue(0)
+                receiveTextView.append("\nReceived: $rawText")
             }
         }
     }
@@ -135,15 +136,6 @@ class MainActivity : AppCompatActivity() {
             ),
             REQUEST_CODE_PERMISSIONS
         )
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-            startScan()
-        } else {
-            Toast.makeText(this, "Permissions required!", Toast.LENGTH_SHORT).show()
-        }
     }
 
     companion object {

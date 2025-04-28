@@ -30,28 +30,30 @@ public final class MeshtasticappProtobufs {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * This field will store the text message
-     * </pre>
-     *
      * <code>string text = 1;</code>
      * @return The text.
      */
     java.lang.String getText();
     /**
-     * <pre>
-     * This field will store the text message
-     * </pre>
-     *
      * <code>string text = 1;</code>
      * @return The bytes for text.
      */
     com.google.protobuf.ByteString
         getTextBytes();
+
+    /**
+     * <pre>
+     * Optional: Raw binary payload
+     * </pre>
+     *
+     * <code>bytes binary = 2;</code>
+     * @return The binary.
+     */
+    com.google.protobuf.ByteString getBinary();
   }
   /**
    * <pre>
-   * Define the MeshData message that contains a text string
+   * This message contains user text, or other app-specific payload
    * </pre>
    *
    * Protobuf type {@code MeshData}
@@ -76,6 +78,7 @@ public final class MeshtasticappProtobufs {
     }
     private MeshData() {
       text_ = "";
+      binary_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -95,10 +98,6 @@ public final class MeshtasticappProtobufs {
     @SuppressWarnings("serial")
     private volatile java.lang.Object text_ = "";
     /**
-     * <pre>
-     * This field will store the text message
-     * </pre>
-     *
      * <code>string text = 1;</code>
      * @return The text.
      */
@@ -116,10 +115,6 @@ public final class MeshtasticappProtobufs {
       }
     }
     /**
-     * <pre>
-     * This field will store the text message
-     * </pre>
-     *
      * <code>string text = 1;</code>
      * @return The bytes for text.
      */
@@ -136,6 +131,21 @@ public final class MeshtasticappProtobufs {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int BINARY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString binary_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * Optional: Raw binary payload
+     * </pre>
+     *
+     * <code>bytes binary = 2;</code>
+     * @return The binary.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getBinary() {
+      return binary_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -155,6 +165,9 @@ public final class MeshtasticappProtobufs {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(text_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, text_);
       }
+      if (!binary_.isEmpty()) {
+        output.writeBytes(2, binary_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -166,6 +179,10 @@ public final class MeshtasticappProtobufs {
       size = 0;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(text_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, text_);
+      }
+      if (!binary_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, binary_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -184,6 +201,8 @@ public final class MeshtasticappProtobufs {
 
       if (!getText()
           .equals(other.getText())) return false;
+      if (!getBinary()
+          .equals(other.getBinary())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -197,6 +216,8 @@ public final class MeshtasticappProtobufs {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
+      hash = (37 * hash) + BINARY_FIELD_NUMBER;
+      hash = (53 * hash) + getBinary().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -296,7 +317,7 @@ public final class MeshtasticappProtobufs {
     }
     /**
      * <pre>
-     * Define the MeshData message that contains a text string
+     * This message contains user text, or other app-specific payload
      * </pre>
      *
      * Protobuf type {@code MeshData}
@@ -333,6 +354,7 @@ public final class MeshtasticappProtobufs {
         super.clear();
         bitField0_ = 0;
         text_ = "";
+        binary_ = com.google.protobuf.ByteString.EMPTY;
         return this;
       }
 
@@ -369,6 +391,9 @@ public final class MeshtasticappProtobufs {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.text_ = text_;
         }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.binary_ = binary_;
+        }
       }
 
       @java.lang.Override
@@ -387,6 +412,9 @@ public final class MeshtasticappProtobufs {
           text_ = other.text_;
           bitField0_ |= 0x00000001;
           onChanged();
+        }
+        if (other.getBinary() != com.google.protobuf.ByteString.EMPTY) {
+          setBinary(other.getBinary());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -419,6 +447,11 @@ public final class MeshtasticappProtobufs {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
+              case 18: {
+                binary_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -438,10 +471,6 @@ public final class MeshtasticappProtobufs {
 
       private java.lang.Object text_ = "";
       /**
-       * <pre>
-       * This field will store the text message
-       * </pre>
-       *
        * <code>string text = 1;</code>
        * @return The text.
        */
@@ -458,10 +487,6 @@ public final class MeshtasticappProtobufs {
         }
       }
       /**
-       * <pre>
-       * This field will store the text message
-       * </pre>
-       *
        * <code>string text = 1;</code>
        * @return The bytes for text.
        */
@@ -479,10 +504,6 @@ public final class MeshtasticappProtobufs {
         }
       }
       /**
-       * <pre>
-       * This field will store the text message
-       * </pre>
-       *
        * <code>string text = 1;</code>
        * @param value The text to set.
        * @return This builder for chaining.
@@ -496,10 +517,6 @@ public final class MeshtasticappProtobufs {
         return this;
       }
       /**
-       * <pre>
-       * This field will store the text message
-       * </pre>
-       *
        * <code>string text = 1;</code>
        * @return This builder for chaining.
        */
@@ -510,10 +527,6 @@ public final class MeshtasticappProtobufs {
         return this;
       }
       /**
-       * <pre>
-       * This field will store the text message
-       * </pre>
-       *
        * <code>string text = 1;</code>
        * @param value The bytes for text to set.
        * @return This builder for chaining.
@@ -524,6 +537,50 @@ public final class MeshtasticappProtobufs {
         checkByteStringIsUtf8(value);
         text_ = value;
         bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString binary_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * Optional: Raw binary payload
+       * </pre>
+       *
+       * <code>bytes binary = 2;</code>
+       * @return The binary.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getBinary() {
+        return binary_;
+      }
+      /**
+       * <pre>
+       * Optional: Raw binary payload
+       * </pre>
+       *
+       * <code>bytes binary = 2;</code>
+       * @param value The binary to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBinary(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        binary_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Optional: Raw binary payload
+       * </pre>
+       *
+       * <code>bytes binary = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBinary() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        binary_ = getDefaultInstance().getBinary();
         onChanged();
         return this;
       }
@@ -579,62 +636,791 @@ public final class MeshtasticappProtobufs {
 
   }
 
-  public interface MeshPacketOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:MeshPacket)
+  public interface DecodedOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Decoded)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Optional field for command ID
-     * </pre>
-     *
-     * <code>optional uint32 from = 1;</code>
-     * @return Whether the from field is set.
+     * <code>.Decoded.PortNum portnum = 1;</code>
+     * @return The enum numeric value on the wire for portnum.
      */
-    boolean hasFrom();
+    int getPortnumValue();
     /**
-     * <pre>
-     * Optional field for command ID
-     * </pre>
-     *
-     * <code>optional uint32 from = 1;</code>
-     * @return The from.
+     * <code>.Decoded.PortNum portnum = 1;</code>
+     * @return The portnum.
      */
-    int getFrom();
+    com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum getPortnum();
 
     /**
      * <pre>
-     * Recipient ID
+     * Payload will be MeshData serialized as bytes
      * </pre>
      *
-     * <code>uint32 to = 2;</code>
-     * @return The to.
-     */
-    int getTo();
-
-    /**
-     * <pre>
-     * Channel for the message
-     * </pre>
-     *
-     * <code>uint32 channel = 3;</code>
-     * @return The channel.
-     */
-    int getChannel();
-
-    /**
-     * <pre>
-     * Payload, which will be a MeshData message
-     * </pre>
-     *
-     * <code>bytes payload = 4;</code>
+     * <code>bytes payload = 2;</code>
      * @return The payload.
      */
     com.google.protobuf.ByteString getPayload();
   }
   /**
    * <pre>
-   * Define the MeshPacket message that includes the MeshData
+   * This defines the "decoded" field inside MeshPacket
+   * </pre>
+   *
+   * Protobuf type {@code Decoded}
+   */
+  public static final class Decoded extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:Decoded)
+      DecodedOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 3,
+        /* suffix= */ "",
+        Decoded.class.getName());
+    }
+    // Use Decoded.newBuilder() to construct.
+    private Decoded(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private Decoded() {
+      portnum_ = 0;
+      payload_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.internal_static_Decoded_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.internal_static_Decoded_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.class, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code Decoded.PortNum}
+     */
+    public enum PortNum
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>UNKNOWN_APP = 0;</code>
+       */
+      UNKNOWN_APP(0),
+      /**
+       * <code>TEXT_MESSAGE_APP = 1;</code>
+       */
+      TEXT_MESSAGE_APP(1),
+      /**
+       * <code>POSITION_APP = 2;</code>
+       */
+      POSITION_APP(2),
+      /**
+       * <code>TELEMETRY_APP = 3;</code>
+       */
+      TELEMETRY_APP(3),
+      /**
+       * <code>NODEINFO_APP = 5;</code>
+       */
+      NODEINFO_APP(5),
+      /**
+       * <pre>
+       * (you can add more as needed)
+       * </pre>
+       *
+       * <code>ROUTING_APP = 7;</code>
+       */
+      ROUTING_APP(7),
+      UNRECOGNIZED(-1),
+      ;
+
+      static {
+        com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+          com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+          /* major= */ 4,
+          /* minor= */ 29,
+          /* patch= */ 3,
+          /* suffix= */ "",
+          PortNum.class.getName());
+      }
+      /**
+       * <code>UNKNOWN_APP = 0;</code>
+       */
+      public static final int UNKNOWN_APP_VALUE = 0;
+      /**
+       * <code>TEXT_MESSAGE_APP = 1;</code>
+       */
+      public static final int TEXT_MESSAGE_APP_VALUE = 1;
+      /**
+       * <code>POSITION_APP = 2;</code>
+       */
+      public static final int POSITION_APP_VALUE = 2;
+      /**
+       * <code>TELEMETRY_APP = 3;</code>
+       */
+      public static final int TELEMETRY_APP_VALUE = 3;
+      /**
+       * <code>NODEINFO_APP = 5;</code>
+       */
+      public static final int NODEINFO_APP_VALUE = 5;
+      /**
+       * <pre>
+       * (you can add more as needed)
+       * </pre>
+       *
+       * <code>ROUTING_APP = 7;</code>
+       */
+      public static final int ROUTING_APP_VALUE = 7;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static PortNum valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static PortNum forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_APP;
+          case 1: return TEXT_MESSAGE_APP;
+          case 2: return POSITION_APP;
+          case 3: return TELEMETRY_APP;
+          case 5: return NODEINFO_APP;
+          case 7: return ROUTING_APP;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<PortNum>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          PortNum> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<PortNum>() {
+              public PortNum findValueByNumber(int number) {
+                return PortNum.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final PortNum[] VALUES = values();
+
+      public static PortNum valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private PortNum(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:Decoded.PortNum)
+    }
+
+    public static final int PORTNUM_FIELD_NUMBER = 1;
+    private int portnum_ = 0;
+    /**
+     * <code>.Decoded.PortNum portnum = 1;</code>
+     * @return The enum numeric value on the wire for portnum.
+     */
+    @java.lang.Override public int getPortnumValue() {
+      return portnum_;
+    }
+    /**
+     * <code>.Decoded.PortNum portnum = 1;</code>
+     * @return The portnum.
+     */
+    @java.lang.Override public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum getPortnum() {
+      com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum result = com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.forNumber(portnum_);
+      return result == null ? com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.UNRECOGNIZED : result;
+    }
+
+    public static final int PAYLOAD_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * Payload will be MeshData serialized as bytes
+     * </pre>
+     *
+     * <code>bytes payload = 2;</code>
+     * @return The payload.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getPayload() {
+      return payload_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (portnum_ != com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.UNKNOWN_APP.getNumber()) {
+        output.writeEnum(1, portnum_);
+      }
+      if (!payload_.isEmpty()) {
+        output.writeBytes(2, payload_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (portnum_ != com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.UNKNOWN_APP.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, portnum_);
+      }
+      if (!payload_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, payload_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded)) {
+        return super.equals(obj);
+      }
+      com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded other = (com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded) obj;
+
+      if (portnum_ != other.portnum_) return false;
+      if (!getPayload()
+          .equals(other.getPayload())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PORTNUM_FIELD_NUMBER;
+      hash = (53 * hash) + portnum_;
+      hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
+      hash = (53 * hash) + getPayload().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * This defines the "decoded" field inside MeshPacket
+     * </pre>
+     *
+     * Protobuf type {@code Decoded}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Decoded)
+        com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.internal_static_Decoded_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.internal_static_Decoded_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.class, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder.class);
+      }
+
+      // Construct using com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        portnum_ = 0;
+        payload_ = com.google.protobuf.ByteString.EMPTY;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.internal_static_Decoded_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDefaultInstanceForType() {
+        return com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded build() {
+        com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded buildPartial() {
+        com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded result = new com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.portnum_ = portnum_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.payload_ = payload_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded) {
+          return mergeFrom((com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded other) {
+        if (other == com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance()) return this;
+        if (other.portnum_ != 0) {
+          setPortnumValue(other.getPortnumValue());
+        }
+        if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
+          setPayload(other.getPayload());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                portnum_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                payload_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int portnum_ = 0;
+      /**
+       * <code>.Decoded.PortNum portnum = 1;</code>
+       * @return The enum numeric value on the wire for portnum.
+       */
+      @java.lang.Override public int getPortnumValue() {
+        return portnum_;
+      }
+      /**
+       * <code>.Decoded.PortNum portnum = 1;</code>
+       * @param value The enum numeric value on the wire for portnum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortnumValue(int value) {
+        portnum_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Decoded.PortNum portnum = 1;</code>
+       * @return The portnum.
+       */
+      @java.lang.Override
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum getPortnum() {
+        com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum result = com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.forNumber(portnum_);
+        return result == null ? com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.Decoded.PortNum portnum = 1;</code>
+       * @param value The portnum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortnum(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.PortNum value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        portnum_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Decoded.PortNum portnum = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPortnum() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        portnum_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * Payload will be MeshData serialized as bytes
+       * </pre>
+       *
+       * <code>bytes payload = 2;</code>
+       * @return The payload.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getPayload() {
+        return payload_;
+      }
+      /**
+       * <pre>
+       * Payload will be MeshData serialized as bytes
+       * </pre>
+       *
+       * <code>bytes payload = 2;</code>
+       * @param value The payload to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPayload(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        payload_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Payload will be MeshData serialized as bytes
+       * </pre>
+       *
+       * <code>bytes payload = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPayload() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        payload_ = getDefaultInstance().getPayload();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Decoded)
+    }
+
+    // @@protoc_insertion_point(class_scope:Decoded)
+    private static final com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded();
+    }
+
+    public static com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Decoded>
+        PARSER = new com.google.protobuf.AbstractParser<Decoded>() {
+      @java.lang.Override
+      public Decoded parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Decoded> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Decoded> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MeshPacketOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MeshPacket)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint32 from = 1;</code>
+     * @return The from.
+     */
+    int getFrom();
+
+    /**
+     * <code>uint32 to = 2;</code>
+     * @return The to.
+     */
+    int getTo();
+
+    /**
+     * <code>uint32 channel = 3;</code>
+     * @return The channel.
+     */
+    int getChannel();
+
+    /**
+     * <code>bool want_ack = 4;</code>
+     * @return The wantAck.
+     */
+    boolean getWantAck();
+
+    /**
+     * <pre>
+     * Either payload (raw) or decoded (preferred)
+     * </pre>
+     *
+     * <code>bytes payload = 5;</code>
+     * @return The payload.
+     */
+    com.google.protobuf.ByteString getPayload();
+
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     * @return Whether the decoded field is set.
+     */
+    boolean hasDecoded();
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     * @return The decoded.
+     */
+    com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDecoded();
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     */
+    com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder getDecodedOrBuilder();
+  }
+  /**
+   * <pre>
+   * The main packet sent over BLE / Radio
    * </pre>
    *
    * Protobuf type {@code MeshPacket}
@@ -678,23 +1464,7 @@ public final class MeshtasticappProtobufs {
     public static final int FROM_FIELD_NUMBER = 1;
     private int from_ = 0;
     /**
-     * <pre>
-     * Optional field for command ID
-     * </pre>
-     *
-     * <code>optional uint32 from = 1;</code>
-     * @return Whether the from field is set.
-     */
-    @java.lang.Override
-    public boolean hasFrom() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <pre>
-     * Optional field for command ID
-     * </pre>
-     *
-     * <code>optional uint32 from = 1;</code>
+     * <code>uint32 from = 1;</code>
      * @return The from.
      */
     @java.lang.Override
@@ -705,10 +1475,6 @@ public final class MeshtasticappProtobufs {
     public static final int TO_FIELD_NUMBER = 2;
     private int to_ = 0;
     /**
-     * <pre>
-     * Recipient ID
-     * </pre>
-     *
      * <code>uint32 to = 2;</code>
      * @return The to.
      */
@@ -720,10 +1486,6 @@ public final class MeshtasticappProtobufs {
     public static final int CHANNEL_FIELD_NUMBER = 3;
     private int channel_ = 0;
     /**
-     * <pre>
-     * Channel for the message
-     * </pre>
-     *
      * <code>uint32 channel = 3;</code>
      * @return The channel.
      */
@@ -732,19 +1494,56 @@ public final class MeshtasticappProtobufs {
       return channel_;
     }
 
-    public static final int PAYLOAD_FIELD_NUMBER = 4;
+    public static final int WANT_ACK_FIELD_NUMBER = 4;
+    private boolean wantAck_ = false;
+    /**
+     * <code>bool want_ack = 4;</code>
+     * @return The wantAck.
+     */
+    @java.lang.Override
+    public boolean getWantAck() {
+      return wantAck_;
+    }
+
+    public static final int PAYLOAD_FIELD_NUMBER = 5;
     private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * Payload, which will be a MeshData message
+     * Either payload (raw) or decoded (preferred)
      * </pre>
      *
-     * <code>bytes payload = 4;</code>
+     * <code>bytes payload = 5;</code>
      * @return The payload.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getPayload() {
       return payload_;
+    }
+
+    public static final int DECODED_FIELD_NUMBER = 6;
+    private com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded decoded_;
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     * @return Whether the decoded field is set.
+     */
+    @java.lang.Override
+    public boolean hasDecoded() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     * @return The decoded.
+     */
+    @java.lang.Override
+    public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDecoded() {
+      return decoded_ == null ? com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance() : decoded_;
+    }
+    /**
+     * <code>.Decoded decoded = 6;</code>
+     */
+    @java.lang.Override
+    public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder getDecodedOrBuilder() {
+      return decoded_ == null ? com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance() : decoded_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -761,7 +1560,7 @@ public final class MeshtasticappProtobufs {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (from_ != 0) {
         output.writeUInt32(1, from_);
       }
       if (to_ != 0) {
@@ -770,8 +1569,14 @@ public final class MeshtasticappProtobufs {
       if (channel_ != 0) {
         output.writeUInt32(3, channel_);
       }
+      if (wantAck_ != false) {
+        output.writeBool(4, wantAck_);
+      }
       if (!payload_.isEmpty()) {
-        output.writeBytes(4, payload_);
+        output.writeBytes(5, payload_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(6, getDecoded());
       }
       getUnknownFields().writeTo(output);
     }
@@ -782,7 +1587,7 @@ public final class MeshtasticappProtobufs {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (from_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(1, from_);
       }
@@ -794,9 +1599,17 @@ public final class MeshtasticappProtobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, channel_);
       }
+      if (wantAck_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, wantAck_);
+      }
       if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, payload_);
+          .computeBytesSize(5, payload_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getDecoded());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -813,17 +1626,21 @@ public final class MeshtasticappProtobufs {
       }
       com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket other = (com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket) obj;
 
-      if (hasFrom() != other.hasFrom()) return false;
-      if (hasFrom()) {
-        if (getFrom()
-            != other.getFrom()) return false;
-      }
+      if (getFrom()
+          != other.getFrom()) return false;
       if (getTo()
           != other.getTo()) return false;
       if (getChannel()
           != other.getChannel()) return false;
+      if (getWantAck()
+          != other.getWantAck()) return false;
       if (!getPayload()
           .equals(other.getPayload())) return false;
+      if (hasDecoded() != other.hasDecoded()) return false;
+      if (hasDecoded()) {
+        if (!getDecoded()
+            .equals(other.getDecoded())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -835,16 +1652,21 @@ public final class MeshtasticappProtobufs {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasFrom()) {
-        hash = (37 * hash) + FROM_FIELD_NUMBER;
-        hash = (53 * hash) + getFrom();
-      }
+      hash = (37 * hash) + FROM_FIELD_NUMBER;
+      hash = (53 * hash) + getFrom();
       hash = (37 * hash) + TO_FIELD_NUMBER;
       hash = (53 * hash) + getTo();
       hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
       hash = (53 * hash) + getChannel();
+      hash = (37 * hash) + WANT_ACK_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getWantAck());
       hash = (37 * hash) + PAYLOAD_FIELD_NUMBER;
       hash = (53 * hash) + getPayload().hashCode();
+      if (hasDecoded()) {
+        hash = (37 * hash) + DECODED_FIELD_NUMBER;
+        hash = (53 * hash) + getDecoded().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -944,7 +1766,7 @@ public final class MeshtasticappProtobufs {
     }
     /**
      * <pre>
-     * Define the MeshPacket message that includes the MeshData
+     * The main packet sent over BLE / Radio
      * </pre>
      *
      * Protobuf type {@code MeshPacket}
@@ -968,13 +1790,19 @@ public final class MeshtasticappProtobufs {
 
       // Construct using com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket.newBuilder()
       private Builder() {
-
+        maybeForceBuilderInitialization();
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getDecodedFieldBuilder();
+        }
       }
       @java.lang.Override
       public Builder clear() {
@@ -983,7 +1811,13 @@ public final class MeshtasticappProtobufs {
         from_ = 0;
         to_ = 0;
         channel_ = 0;
+        wantAck_ = false;
         payload_ = com.google.protobuf.ByteString.EMPTY;
+        decoded_ = null;
+        if (decodedBuilder_ != null) {
+          decodedBuilder_.dispose();
+          decodedBuilder_ = null;
+        }
         return this;
       }
 
@@ -1017,10 +1851,8 @@ public final class MeshtasticappProtobufs {
 
       private void buildPartial0(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.from_ = from_;
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.to_ = to_;
@@ -1029,7 +1861,17 @@ public final class MeshtasticappProtobufs {
           result.channel_ = channel_;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.wantAck_ = wantAck_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
           result.payload_ = payload_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.decoded_ = decodedBuilder_ == null
+              ? decoded_
+              : decodedBuilder_.build();
+          to_bitField0_ |= 0x00000001;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -1046,7 +1888,7 @@ public final class MeshtasticappProtobufs {
 
       public Builder mergeFrom(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket other) {
         if (other == com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket.getDefaultInstance()) return this;
-        if (other.hasFrom()) {
+        if (other.getFrom() != 0) {
           setFrom(other.getFrom());
         }
         if (other.getTo() != 0) {
@@ -1055,8 +1897,14 @@ public final class MeshtasticappProtobufs {
         if (other.getChannel() != 0) {
           setChannel(other.getChannel());
         }
+        if (other.getWantAck() != false) {
+          setWantAck(other.getWantAck());
+        }
         if (other.getPayload() != com.google.protobuf.ByteString.EMPTY) {
           setPayload(other.getPayload());
+        }
+        if (other.hasDecoded()) {
+          mergeDecoded(other.getDecoded());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1099,11 +1947,23 @@ public final class MeshtasticappProtobufs {
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
-              case 34: {
-                payload_ = input.readBytes();
+              case 32: {
+                wantAck_ = input.readBool();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 34
+              } // case 32
+              case 42: {
+                payload_ = input.readBytes();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                input.readMessage(
+                    getDecodedFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1123,23 +1983,7 @@ public final class MeshtasticappProtobufs {
 
       private int from_ ;
       /**
-       * <pre>
-       * Optional field for command ID
-       * </pre>
-       *
-       * <code>optional uint32 from = 1;</code>
-       * @return Whether the from field is set.
-       */
-      @java.lang.Override
-      public boolean hasFrom() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <pre>
-       * Optional field for command ID
-       * </pre>
-       *
-       * <code>optional uint32 from = 1;</code>
+       * <code>uint32 from = 1;</code>
        * @return The from.
        */
       @java.lang.Override
@@ -1147,11 +1991,7 @@ public final class MeshtasticappProtobufs {
         return from_;
       }
       /**
-       * <pre>
-       * Optional field for command ID
-       * </pre>
-       *
-       * <code>optional uint32 from = 1;</code>
+       * <code>uint32 from = 1;</code>
        * @param value The from to set.
        * @return This builder for chaining.
        */
@@ -1163,11 +2003,7 @@ public final class MeshtasticappProtobufs {
         return this;
       }
       /**
-       * <pre>
-       * Optional field for command ID
-       * </pre>
-       *
-       * <code>optional uint32 from = 1;</code>
+       * <code>uint32 from = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearFrom() {
@@ -1179,10 +2015,6 @@ public final class MeshtasticappProtobufs {
 
       private int to_ ;
       /**
-       * <pre>
-       * Recipient ID
-       * </pre>
-       *
        * <code>uint32 to = 2;</code>
        * @return The to.
        */
@@ -1191,10 +2023,6 @@ public final class MeshtasticappProtobufs {
         return to_;
       }
       /**
-       * <pre>
-       * Recipient ID
-       * </pre>
-       *
        * <code>uint32 to = 2;</code>
        * @param value The to to set.
        * @return This builder for chaining.
@@ -1207,10 +2035,6 @@ public final class MeshtasticappProtobufs {
         return this;
       }
       /**
-       * <pre>
-       * Recipient ID
-       * </pre>
-       *
        * <code>uint32 to = 2;</code>
        * @return This builder for chaining.
        */
@@ -1223,10 +2047,6 @@ public final class MeshtasticappProtobufs {
 
       private int channel_ ;
       /**
-       * <pre>
-       * Channel for the message
-       * </pre>
-       *
        * <code>uint32 channel = 3;</code>
        * @return The channel.
        */
@@ -1235,10 +2055,6 @@ public final class MeshtasticappProtobufs {
         return channel_;
       }
       /**
-       * <pre>
-       * Channel for the message
-       * </pre>
-       *
        * <code>uint32 channel = 3;</code>
        * @param value The channel to set.
        * @return This builder for chaining.
@@ -1251,10 +2067,6 @@ public final class MeshtasticappProtobufs {
         return this;
       }
       /**
-       * <pre>
-       * Channel for the message
-       * </pre>
-       *
        * <code>uint32 channel = 3;</code>
        * @return This builder for chaining.
        */
@@ -1265,13 +2077,45 @@ public final class MeshtasticappProtobufs {
         return this;
       }
 
+      private boolean wantAck_ ;
+      /**
+       * <code>bool want_ack = 4;</code>
+       * @return The wantAck.
+       */
+      @java.lang.Override
+      public boolean getWantAck() {
+        return wantAck_;
+      }
+      /**
+       * <code>bool want_ack = 4;</code>
+       * @param value The wantAck to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWantAck(boolean value) {
+
+        wantAck_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool want_ack = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWantAck() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        wantAck_ = false;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * Payload, which will be a MeshData message
+       * Either payload (raw) or decoded (preferred)
        * </pre>
        *
-       * <code>bytes payload = 4;</code>
+       * <code>bytes payload = 5;</code>
        * @return The payload.
        */
       @java.lang.Override
@@ -1280,33 +2124,154 @@ public final class MeshtasticappProtobufs {
       }
       /**
        * <pre>
-       * Payload, which will be a MeshData message
+       * Either payload (raw) or decoded (preferred)
        * </pre>
        *
-       * <code>bytes payload = 4;</code>
+       * <code>bytes payload = 5;</code>
        * @param value The payload to set.
        * @return This builder for chaining.
        */
       public Builder setPayload(com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         payload_ = value;
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * Payload, which will be a MeshData message
+       * Either payload (raw) or decoded (preferred)
        * </pre>
        *
-       * <code>bytes payload = 4;</code>
+       * <code>bytes payload = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearPayload() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         payload_ = getDefaultInstance().getPayload();
         onChanged();
         return this;
+      }
+
+      private com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded decoded_;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder> decodedBuilder_;
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       * @return Whether the decoded field is set.
+       */
+      public boolean hasDecoded() {
+        return ((bitField0_ & 0x00000020) != 0);
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       * @return The decoded.
+       */
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded getDecoded() {
+        if (decodedBuilder_ == null) {
+          return decoded_ == null ? com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance() : decoded_;
+        } else {
+          return decodedBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public Builder setDecoded(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded value) {
+        if (decodedBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          decoded_ = value;
+        } else {
+          decodedBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public Builder setDecoded(
+          com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder builderForValue) {
+        if (decodedBuilder_ == null) {
+          decoded_ = builderForValue.build();
+        } else {
+          decodedBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public Builder mergeDecoded(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded value) {
+        if (decodedBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) != 0) &&
+            decoded_ != null &&
+            decoded_ != com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance()) {
+            getDecodedBuilder().mergeFrom(value);
+          } else {
+            decoded_ = value;
+          }
+        } else {
+          decodedBuilder_.mergeFrom(value);
+        }
+        if (decoded_ != null) {
+          bitField0_ |= 0x00000020;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public Builder clearDecoded() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        decoded_ = null;
+        if (decodedBuilder_ != null) {
+          decodedBuilder_.dispose();
+          decodedBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder getDecodedBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getDecodedFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      public com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder getDecodedOrBuilder() {
+        if (decodedBuilder_ != null) {
+          return decodedBuilder_.getMessageOrBuilder();
+        } else {
+          return decoded_ == null ?
+              com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.getDefaultInstance() : decoded_;
+        }
+      }
+      /**
+       * <code>.Decoded decoded = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder> 
+          getDecodedFieldBuilder() {
+        if (decodedBuilder_ == null) {
+          decodedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded.Builder, com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.DecodedOrBuilder>(
+                  getDecoded(),
+                  getParentForChildren(),
+                  isClean());
+          decoded_ = null;
+        }
+        return decodedBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:MeshPacket)
@@ -1366,6 +2331,11 @@ public final class MeshtasticappProtobufs {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_MeshData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Decoded_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Decoded_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_MeshPacket_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -1379,11 +2349,17 @@ public final class MeshtasticappProtobufs {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nmesh.proto\"\030\n\010MeshData\022\014\n\004text\030\001 \001(\t\"V" +
-      "\n\nMeshPacket\022\021\n\004from\030\001 \001(\rH\000\210\001\001\022\n\n\002to\030\002 " +
-      "\001(\r\022\017\n\007channel\030\003 \001(\r\022\017\n\007payload\030\004 \001(\014B\007\n" +
-      "\005_fromB=\n#com.example.meshtasticapp.prot" +
-      "obufsB\026MeshtasticappProtobufsb\006proto3"
+      "\n\nmesh.proto\"(\n\010MeshData\022\014\n\004text\030\001 \001(\t\022\016" +
+      "\n\006binary\030\002 \001(\014\"\267\001\n\007Decoded\022!\n\007portnum\030\001 " +
+      "\001(\0162\020.Decoded.PortNum\022\017\n\007payload\030\002 \001(\014\"x" +
+      "\n\007PortNum\022\017\n\013UNKNOWN_APP\020\000\022\024\n\020TEXT_MESSA" +
+      "GE_APP\020\001\022\020\n\014POSITION_APP\020\002\022\021\n\rTELEMETRY_" +
+      "APP\020\003\022\020\n\014NODEINFO_APP\020\005\022\017\n\013ROUTING_APP\020\007" +
+      "\"u\n\nMeshPacket\022\014\n\004from\030\001 \001(\r\022\n\n\002to\030\002 \001(\r" +
+      "\022\017\n\007channel\030\003 \001(\r\022\020\n\010want_ack\030\004 \001(\010\022\017\n\007p" +
+      "ayload\030\005 \001(\014\022\031\n\007decoded\030\006 \001(\0132\010.DecodedB" +
+      "=\n#com.example.meshtasticapp.protobufsB\026" +
+      "MeshtasticappProtobufsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1394,13 +2370,19 @@ public final class MeshtasticappProtobufs {
     internal_static_MeshData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_MeshData_descriptor,
-        new java.lang.String[] { "Text", });
-    internal_static_MeshPacket_descriptor =
+        new java.lang.String[] { "Text", "Binary", });
+    internal_static_Decoded_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_Decoded_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_Decoded_descriptor,
+        new java.lang.String[] { "Portnum", "Payload", });
+    internal_static_MeshPacket_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_MeshPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_MeshPacket_descriptor,
-        new java.lang.String[] { "From", "To", "Channel", "Payload", });
+        new java.lang.String[] { "From", "To", "Channel", "WantAck", "Payload", "Decoded", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

@@ -11,7 +11,7 @@ public inline fun meshPacket(block: com.example.meshtasticapp.protobufs.MeshPack
   com.example.meshtasticapp.protobufs.MeshPacketKt.Dsl._create(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket.newBuilder()).apply { block() }._build()
 /**
  * ```
- * Define the MeshPacket message that includes the MeshData
+ * The main packet sent over BLE / Radio
  * ```
  *
  * Protobuf type `MeshPacket`
@@ -33,11 +33,7 @@ public object MeshPacketKt {
     internal fun _build(): com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket = _builder.build()
 
     /**
-     * ```
-     * Optional field for command ID
-     * ```
-     *
-     * `optional uint32 from = 1;`
+     * `uint32 from = 1;`
      */
     public var from: kotlin.Int
       @JvmName("getFrom")
@@ -47,32 +43,13 @@ public object MeshPacketKt {
         _builder.from = value
       }
     /**
-     * ```
-     * Optional field for command ID
-     * ```
-     *
-     * `optional uint32 from = 1;`
+     * `uint32 from = 1;`
      */
     public fun clearFrom() {
       _builder.clearFrom()
     }
-    /**
-     * ```
-     * Optional field for command ID
-     * ```
-     *
-     * `optional uint32 from = 1;`
-     * @return Whether the from field is set.
-     */
-    public fun hasFrom(): kotlin.Boolean {
-      return _builder.hasFrom()
-    }
 
     /**
-     * ```
-     * Recipient ID
-     * ```
-     *
      * `uint32 to = 2;`
      */
     public var to: kotlin.Int
@@ -83,10 +60,6 @@ public object MeshPacketKt {
         _builder.to = value
       }
     /**
-     * ```
-     * Recipient ID
-     * ```
-     *
      * `uint32 to = 2;`
      */
     public fun clearTo() {
@@ -94,10 +67,6 @@ public object MeshPacketKt {
     }
 
     /**
-     * ```
-     * Channel for the message
-     * ```
-     *
      * `uint32 channel = 3;`
      */
     public var channel: kotlin.Int
@@ -108,10 +77,6 @@ public object MeshPacketKt {
         _builder.channel = value
       }
     /**
-     * ```
-     * Channel for the message
-     * ```
-     *
      * `uint32 channel = 3;`
      */
     public fun clearChannel() {
@@ -119,11 +84,28 @@ public object MeshPacketKt {
     }
 
     /**
+     * `bool want_ack = 4;`
+     */
+    public var wantAck: kotlin.Boolean
+      @JvmName("getWantAck")
+      get() = _builder.wantAck
+      @JvmName("setWantAck")
+      set(value) {
+        _builder.wantAck = value
+      }
+    /**
+     * `bool want_ack = 4;`
+     */
+    public fun clearWantAck() {
+      _builder.clearWantAck()
+    }
+
+    /**
      * ```
-     * Payload, which will be a MeshData message
+     * Either payload (raw) or decoded (preferred)
      * ```
      *
-     * `bytes payload = 4;`
+     * `bytes payload = 5;`
      */
     public var payload: com.google.protobuf.ByteString
       @JvmName("getPayload")
@@ -134,17 +116,47 @@ public object MeshPacketKt {
       }
     /**
      * ```
-     * Payload, which will be a MeshData message
+     * Either payload (raw) or decoded (preferred)
      * ```
      *
-     * `bytes payload = 4;`
+     * `bytes payload = 5;`
      */
     public fun clearPayload() {
       _builder.clearPayload()
     }
+
+    /**
+     * `.Decoded decoded = 6;`
+     */
+    public var decoded: com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded
+      @JvmName("getDecoded")
+      get() = _builder.decoded
+      @JvmName("setDecoded")
+      set(value) {
+        _builder.decoded = value
+      }
+    /**
+     * `.Decoded decoded = 6;`
+     */
+    public fun clearDecoded() {
+      _builder.clearDecoded()
+    }
+    /**
+     * `.Decoded decoded = 6;`
+     * @return Whether the decoded field is set.
+     */
+    public fun hasDecoded(): kotlin.Boolean {
+      return _builder.hasDecoded()
+    }
+
+    public val MeshPacketKt.Dsl.decodedOrNull: com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded?
+      get() = _builder.decodedOrNull
   }
 }
 @kotlin.jvm.JvmSynthetic
 public inline fun com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket.copy(block: `com.example.meshtasticapp.protobufs`.MeshPacketKt.Dsl.() -> kotlin.Unit): com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacket =
   `com.example.meshtasticapp.protobufs`.MeshPacketKt.Dsl._create(this.toBuilder()).apply { block() }._build()
+
+public val com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshPacketOrBuilder.decodedOrNull: com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.Decoded?
+  get() = if (hasDecoded()) getDecoded() else null
 

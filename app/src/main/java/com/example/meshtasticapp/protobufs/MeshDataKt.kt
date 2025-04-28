@@ -11,7 +11,7 @@ public inline fun meshData(block: com.example.meshtasticapp.protobufs.MeshDataKt
   com.example.meshtasticapp.protobufs.MeshDataKt.Dsl._create(com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshData.newBuilder()).apply { block() }._build()
 /**
  * ```
- * Define the MeshData message that contains a text string
+ * This message contains user text, or other app-specific payload
  * ```
  *
  * Protobuf type `MeshData`
@@ -33,10 +33,6 @@ public object MeshDataKt {
     internal fun _build(): com.example.meshtasticapp.protobufs.MeshtasticappProtobufs.MeshData = _builder.build()
 
     /**
-     * ```
-     * This field will store the text message
-     * ```
-     *
      * `string text = 1;`
      */
     public var text: kotlin.String
@@ -47,14 +43,35 @@ public object MeshDataKt {
         _builder.text = value
       }
     /**
-     * ```
-     * This field will store the text message
-     * ```
-     *
      * `string text = 1;`
      */
     public fun clearText() {
       _builder.clearText()
+    }
+
+    /**
+     * ```
+     * Optional: Raw binary payload
+     * ```
+     *
+     * `bytes binary = 2;`
+     */
+    public var binary: com.google.protobuf.ByteString
+      @JvmName("getBinary")
+      get() = _builder.binary
+      @JvmName("setBinary")
+      set(value) {
+        _builder.binary = value
+      }
+    /**
+     * ```
+     * Optional: Raw binary payload
+     * ```
+     *
+     * `bytes binary = 2;`
+     */
+    public fun clearBinary() {
+      _builder.clearBinary()
     }
   }
 }
